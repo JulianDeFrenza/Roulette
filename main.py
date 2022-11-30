@@ -24,7 +24,7 @@ class Roulette:
                 res.append(1)
             else:
                 res.append(0)
-                # Then we check if it's high (1) or low (0).
+            # Then we check if it's high (1) or low (0).
             if throw >= 19:
                 res.append(1)
             else:
@@ -36,45 +36,6 @@ class Roulette:
                 res.append(0)
         # Once the list is ready, we append it to the results list.
         self.results.append(res)
-
-# We will also create the Player class, that will store each player's balance and their rules for betting.
-class Player:
-    def __init__(self, bettingPosition, bettingBoolean):
-        # The balance starts at zero, and each consecutive bet will modify it.
-        self.balance = 0
-        # The sum of the first and last elements of the bettingList define how much does the player bet.
-        self.bettingList = [1, 2, 3, 4]
-        # The bettingPosition attribute indicates what item of the results list should be checked for each player.
-        self.bettingPosition = bettingPosition
-        # The bettingBoolean attribute indicates what boolean will be looked for in the bettingPosition of the results list.
-        self.bettingBoolean = bettingBoolean
-
-    # The "check" method will compare the betting rules previously defined with a specific roulette throw.
-    def check(self, res):
-        # The player bets the sum of the first and last numbers on the bettingList.
-        if len(self.bettingList) > 1:
-            bet = self.bettingList[0] + self.bettingList[-1]
-        else:
-            bet = self.bettingList[0]
-        # The bet should also be between 5 and 4000.
-        if bet < 5:
-            bet = 5
-        # If the bet exceeds 4000, the bettingList should be restarted.
-        elif bet > 4000:
-            bet = 5
-            self.bettingList = [1, 2, 3, 4]
-        # If the betting criteria is met, the player wins the betted amount, adds it to their balance and updates their bettingList.
-        if res[self.bettingPosition] == self.bettingBoolean:
-            self.balance += bet
-            self.bettingList.append(bet)
-        # If the betting criteria isn't met, the player loses its bet, and updates their bettingList.
-        else:
-            self.balance -= bet
-            if len(self.bettingList) <= 2:
-                self.bettingList = [1, 2, 3, 4]
-            else:
-                self.bettingList.pop(0)
-                self.bettingList.pop(-1)
 
 # We will also create the Player class, that will store each player's balance and their rules for betting.
 class Player:
